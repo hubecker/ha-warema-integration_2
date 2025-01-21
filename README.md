@@ -1,1 +1,1 @@
-# ha-warema-integration_2
+Undocument integartion for vertical Warema shades.
