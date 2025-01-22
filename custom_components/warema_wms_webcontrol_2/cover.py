@@ -40,13 +40,11 @@ async def async_setup_platform(hass, config, add_devices_callback, discovery_inf
 
     # async_create_clientsession(hass),
     client = WmsControllerAPI(async_create_clientsession(hass), config[CONF_WEBCONTROL_SERVER_ADDR])
-    
-    shades = Shade.get_all_shades(client, time_between_cmds=0.5)
-    add_devices(WaremaShade(s, config[CONF_UPDATE_INTERVAL]) for s in shades)
 
-def setup_platform(hass, config, add_devices, discovery_info=None):
+    _LOGGER.debug.debug("CLIENT: {}".format(client))
+    shades = Shade.get_all_shades(client, time_between_cmds=0.5)
+    _LOGGER.debug.debug("SHADES: {}".format(shades))
     
-    shades = Shade.get_all_shades(WmsController(config[CONF_WEBCONTROL_SERVER_ADDR]), time_between_cmds=0.5)
     add_devices(WaremaShade(s, config[CONF_UPDATE_INTERVAL]) for s in shades)
 
 class WmsControllerAPI:
@@ -58,6 +56,7 @@ class WmsControllerAPI:
 
     async def call_WmsController(self):
         """Call WmsController"""
+        response = None
         try:
             async with async_timeout.timeout(10, loop=self.loop):
                 response = await WmsController( self.session.get(url) )
