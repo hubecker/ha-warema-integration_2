@@ -42,14 +42,6 @@ async def async_setup_platform(hass, config, add_devices_callback, discovery_inf
     shades = Shade.get_all_shades(client, time_between_cmds=0.5)
     add_devices(WaremaShade(s, config[CONF_UPDATE_INTERVAL]) for s in shades)
 
- 
-    
-        api = WienerlinienAPI(async_create_clientsession(hass), hass.loop, stopid)
-    
-    
-    add_devices_callback(dev, True)
-
-
 def setup_platform(hass, config, add_devices, discovery_info=None):
     
     shades = Shade.get_all_shades(WmsController(config[CONF_WEBCONTROL_SERVER_ADDR]), time_between_cmds=0.5)
