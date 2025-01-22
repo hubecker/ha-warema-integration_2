@@ -1,2 +1,2 @@
-2homeassistant>=2024.8.2
+homeassistant>=2024.8.2
 warema-wms-controller==0.2.4
