@@ -37,8 +37,9 @@ async def async_setup_platform(hass, config, add_devices_callback, discovery_inf
     """Setup."""
     url = config.get(CONF_WEBCONTROL_SERVER_ADDR)
     update_interval = config.get(CONF_UPDATE_INTERVAL)
- 
-    client = WmsController(async_create_clientsession(hass), config[CONF_WEBCONTROL_SERVER_ADDR])
+
+    # async_create_clientsession(hass),
+    client = WmsController( config[CONF_WEBCONTROL_SERVER_ADDR])
     shades = Shade.get_all_shades(client, time_between_cmds=0.5)
     add_devices(WaremaShade(s, config[CONF_UPDATE_INTERVAL]) for s in shades)
 
