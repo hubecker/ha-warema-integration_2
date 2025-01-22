@@ -1,3 +1,3 @@
 """Constants"""
-CONF_WEBCONTROL_SERVER_ADDR = "webcontrol_server_addr"
-CONF_UPDATE_INTERVAL = "update_interval"
+webcontrol_server_addr = "http://192.168.178.73"
+update_interval = 300
