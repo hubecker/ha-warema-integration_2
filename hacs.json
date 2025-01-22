@@ -1,6 +1,6 @@
 {
   "name": "warema shades integration 2",
-  "homeassistant": "2023.8.0",
+  "homeassistant": "2024.8.2",
   "hacs": "1.18.0",
   "render_readme": true
 }
