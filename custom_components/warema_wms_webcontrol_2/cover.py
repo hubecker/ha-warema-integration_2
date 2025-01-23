@@ -35,11 +35,11 @@ _LOGGER = logging.getLogger(__name__)
 
 async def async_setup_platform(hass, config, add_devices_callback, discovery_info=None):
     """Setup."""
-    url = config.get(CONF_WEBCONTROL_SERVER_ADDR)
-    update_interval = config.get(CONF_UPDATE_INTERVAL)
+    url = webcontrol_server_addr
+    update_interval = update_interval
 
     # async_create_clientsession(hass),
-    client = WmsControllerAPI(async_create_clientsession(hass), config[CONF_WEBCONTROL_SERVER_ADDR])
+    client = WmsControllerAPI(async_create_clientsession(hass), url)
 
     _LOGGER.debug("CLIENT: {}".format(client))
     shades = Shade.get_all_shades(client, time_between_cmds=0.5)
