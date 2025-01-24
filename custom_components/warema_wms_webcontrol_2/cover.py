@@ -28,8 +28,8 @@ _LOGGER = logging.getLogger(__name__)
 
 async def async_setup_platform(hass, config, add_devices_callback, discovery_info=None):
     """Setup."""
-    url = config.get("webcontrol_server_addr")
-    interval = config.get("update_interval", 30)  # Default: 30 seconds
+    url = config.get(webcontrol_server_addr)
+    interval = config.get(update_interval, 30)  # Default: 30 seconds
 
     if not url:
         _LOGGER.error("URL is required to set up the Warema WMS WebControl cover platform.")
