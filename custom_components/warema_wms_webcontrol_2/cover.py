@@ -42,8 +42,10 @@ async def async_setup_platform(hass, config, add_devices_callback, discovery_inf
     client = WmsControllerAPI(async_create_clientsession(hass), url)
 
     _LOGGER.debug("CLIENT: {}".format(client))
+    _LOGGER.debug(client)
     shades = Shade.get_all_shades(client, time_between_cmds=0.5)
     _LOGGER.debug("SHADES: {}".format(shades))
+    _LOGGER.debug(shades)
     
     add_devices(WaremaShade(s, interval) for s in shades)
 
