@@ -14,6 +14,7 @@ from .const import webcontrol_server_addr, update_interval
 from warema_wms import Shade, WmsController
 
 import homeassistant.helpers.config_validation as cv
+
 from homeassistant.components.cover import (
     ATTR_POSITION,
     ATTR_TILT_POSITION,
@@ -22,14 +23,6 @@ from homeassistant.components.cover import (
     CoverEntityFeature,
     PLATFORM_SCHEMA
 )
-
-CONF_WEBCONTROL_SERVER_ADDR = 'webcontrol_server_addr'
-CONF_UPDATE_INTERVAL = 'update_interval'
-
-PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
-    vol.Optional(CONF_WEBCONTROL_SERVER_ADDR, default='http://webcontrol.local'): cv.url,
-    vol.Optional(CONF_UPDATE_INTERVAL, default=600): cv.positive_int
-})
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -43,12 +36,14 @@ async def async_setup_platform(hass, config, add_devices_callback, discovery_inf
 
     _LOGGER.debug("CLIENT: {}".format(client))
     _LOGGER.debug(client)
+
     shades = Shade.get_all_shades(client, time_between_cmds=0.5)
+    
     _LOGGER.debug("SHADES: {}".format(shades))
     _LOGGER.debug(shades)
+        
+    add_devices_callback(WaremaShade(s, interval) for s in shades)
     
-    add_devices(WaremaShade(s, interval) for s in shades)
-
 class WmsControllerAPI:
     """Call API."""
     def __init__(self, session, url):
