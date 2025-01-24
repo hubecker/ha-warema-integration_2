@@ -36,7 +36,7 @@ _LOGGER = logging.getLogger(__name__)
 async def async_setup_platform(hass, config, add_devices_callback, discovery_info=None):
     """Setup."""
     url = webcontrol_server_addr
-    update_interval = update_interval
+    interval = update_interval
 
     # async_create_clientsession(hass),
     client = WmsControllerAPI(async_create_clientsession(hass), url)
@@ -45,7 +45,7 @@ async def async_setup_platform(hass, config, add_devices_callback, discovery_inf
     shades = Shade.get_all_shades(client, time_between_cmds=0.5)
     _LOGGER.debug("SHADES: {}".format(shades))
     
-    add_devices(WaremaShade(s, config[CONF_UPDATE_INTERVAL]) for s in shades)
+    add_devices(WaremaShade(s, interval) for s in shades)
 
 class WmsControllerAPI:
     """Call API."""
