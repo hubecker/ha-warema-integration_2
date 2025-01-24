@@ -26,15 +26,6 @@ from homeassistant.components.cover import (
 
 _LOGGER = logging.getLogger(__name__)
 
-PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
-    {
-        vol.Optional(CONF_APIKEY): cv.string,
-        vol.Optional(CONF_STOPS, default=None): vol.All(cv.ensure_list, [cv.string]),
-        vol.Optional(CONF_FIRST_NEXT, default="first"): cv.string,
-    }
-)
-
-
 async def async_setup_platform(hass, config, add_devices_callback, discovery_info=None):
     """Setup."""
     url = config.get("webcontrol_server_addr")
