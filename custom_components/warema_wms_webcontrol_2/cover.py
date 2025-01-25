@@ -26,7 +26,7 @@ _LOGGER = logging.getLogger(__name__)
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
     {
         vol.Optional(webcontrol_server_addr, default="http://192.168.178.73"),
-        vol.Optional(update_interval, default=300): cv.positive_int,
+        vol.Optional(update_interval, default=300)
     }
 )
 
