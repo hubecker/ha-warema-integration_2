@@ -68,6 +68,7 @@ class WmsControllerAPI:
     """Call API."""
     def __init__(self, session, url):
         """Initialize."""
+        _LOGGER.debug(url)
         self.session = session
         self.url = url
 
