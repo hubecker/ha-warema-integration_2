@@ -21,7 +21,7 @@ from homeassistant.components.cover import (
     PLATFORM_SCHEMA
 )
 
-PLATFORMS = ["cover"]
+PLATFORMS = [Platform.COVER]
 
 CONF_URL = "webcontrol_server_addr"
 CONF_INTERVALL = "update_interval"
