@@ -6,6 +6,6 @@
   "documentation": "https://github.com//hubecker/ha-warema-integration_2",
   "issue_tracker": "https://github.com/hubecker/ha-warema-integration_2/issues",
   "requirements": ["warema-wms-controller==0.2.4"],
-  "loggers": ["custom_components.warema_wms_webcontrol_2"],
+  “loggers”: [“custom_components.warema_wms_webcontrol_2”],
   "version": "2025.01.3"
 }
