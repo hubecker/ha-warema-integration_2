@@ -21,12 +21,15 @@ from homeassistant.components.cover import (
     PLATFORM_SCHEMA
 )
 
+CONF_URL = webcontrol_server_addr
+CONF_INTERVALL = update_interval
+
 _LOGGER = logging.getLogger(__name__)
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
     {
-        vol.Optional(webcontrol_server_addr, default="http://192.168.178.73"),
-        vol.Optional(update_interval, default=300)
+        vol.Optional(CONF_URL, default="http://192.168.178.73"): cv.url,
+        vol.Optional(CONF_INTERVALL, default=300),
     }
 )
 
