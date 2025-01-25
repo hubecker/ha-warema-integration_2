@@ -9,11 +9,8 @@ from homeassistant.exceptions import PlatformNotReady
 from homeassistant.helpers.aiohttp_client import async_create_clientsession
 from homeassistant.helpers.entity import Entity
 
-from .const import webcontrol_server_addr, update_interval
-
 from warema_wms import Shade, WmsController
-
-import homeassistant.helpers.config_validation as cv
+from .const import webcontrol_server_addr, update_interval
 
 from homeassistant.components.cover import (
     ATTR_POSITION,
@@ -25,6 +22,13 @@ from homeassistant.components.cover import (
 )
 
 _LOGGER = logging.getLogger(__name__)
+
+PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
+    {
+        vol.Optional(webcontrol_server_addr, default="http://192.168.178.73"),
+        vol.Optional(update_interval, default=300): cv.positive_int,
+    }
+)
 
 async def async_setup_platform(hass, config, add_devices_callback, discovery_info=None):
     """Setup."""
