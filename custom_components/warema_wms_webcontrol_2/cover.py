@@ -23,8 +23,8 @@ from homeassistant.components.cover import (
 
 PLATFORMS = ["cover"]
 
-CONF_URL = webcontrol_server_addr
-CONF_INTERVALL = update_interval
+CONF_URL = "webcontrol_server_addr"
+CONF_INTERVALL = "update_interval"
 
 _LOGGER = logging.getLogger(__name__)
 
