@@ -4,7 +4,8 @@ from datetime import datetime
 
 from warema_wms.wms_controller import WmsController
 
-logger = logging.getLogger('warema_wms')
+# logger = logging.getLogger('warema_wms')
+_LOGGER = logging.getLogger(__name__)
 
 
 class Shade:
@@ -51,11 +52,11 @@ class Shade:
             self.state_last_updated = datetime.now()
             return True
         except AttributeError:
-            logger.warning("Couldn't update shade {} in room {}. Invalid response from server."
+            _LOGGER.warning("Couldn't update shade {} in room {}. Invalid response from server."
                            .format(self.get_channel_name(), self.get_room_name()))
             return False
         except Exception:
-            logger.exception("Unexpected exception while updating shade {} in room {}."
+            _LOGGER.exception("Unexpected exception while updating shade {} in room {}."
                              .format(self.get_channel_name(), self.get_room_name()))
             return False
 
@@ -84,7 +85,7 @@ class Shade:
             # self.wms_ctrl.send_rx_move_shutter(self.room.id, self.channel.id)
             if self._verify_set_cmd_sent(new_position):
                 return True
-        logger.warning("Shade {}:{} could not be set to target position {}"
+        _LOGGER.warning("Shade {}:{} could not be set to target position {}"
                        .format(self.room.name, self.channel.name, new_position))
         return False
 
