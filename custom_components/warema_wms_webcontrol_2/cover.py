@@ -33,7 +33,8 @@ PLATFORMS = [Platform.COVER]
 CONF_URL = "webcontrol_server_addr"
 CONF_INTERVALL = "update_interval"
 
-_LOGGER = logging.getLogger(__name__)
+# _LOGGER = logging.getLogger(__name__)
+_LOGGER: logging.Logger = logging.getLogger(__package__)
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
     {
