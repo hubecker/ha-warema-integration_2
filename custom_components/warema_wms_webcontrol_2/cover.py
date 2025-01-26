@@ -30,9 +30,6 @@ from homeassistant.components.cover import (
 
 PLATFORMS = [Platform.COVER]
 
-CONF_URL = "webcontrol_server_addr"
-CONF_INTERVALL = "update_interval"
-
 # _LOGGER = logging.getLogger(__name__)
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
@@ -47,7 +44,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
 async def async_setup_platform(hass, config, add_devices_callback, discovery_info=None):
     """Setup."""
     url = config[CONF_WEBCONTROL_SERVER_ADDR]
-    interval = config[CONF_WEBCONTROL_SERVER_ADDR]  # Default: 30 seconds
+    interval = config[CONF_INTERVALL]  # Default: 30 seconds
 
     _LOGGER.debug(url)
     _LOGGER.debug(interval)
