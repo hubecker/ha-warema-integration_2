@@ -51,16 +51,23 @@ async def async_setup_platform(hass, config, add_devices_callback, discovery_inf
     _LOGGER.debug(url)
     _LOGGER.debug(interval)
 
+    _LOGGER.error(url)
+    _LOGGER.error(interval)
+
+
     # async_create_clientsession(hass),
     client = WmsControllerAPI(async_create_clientsession(hass), url)
 
     _LOGGER.debug("CLIENT: {}".format(client))
     _LOGGER.debug(client)
 
+    _LOGGER.error("CLIENT: {}".format(client))
+    _LOGGER.error(client)
+
     shades = Shade.get_all_shades(client, time_between_cmds=0.5)
     
-    _LOGGER.debug("SHADES: {}".format(shades))
-    _LOGGER.debug(shades)
+    _LOGGER.error("SHADES: {}".format(shades))
+    _LOGGER.error(shades)
 
     dev = []
     for s in shades:
