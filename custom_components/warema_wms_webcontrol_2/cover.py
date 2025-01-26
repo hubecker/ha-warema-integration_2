@@ -36,17 +36,21 @@ CONF_INTERVALL = "update_interval"
 # _LOGGER = logging.getLogger(__name__)
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
-PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
-    {
-        vol.Optional(CONF_URL, default="http://192.168.178.73"): cv.url,
-        vol.Optional(CONF_INTERVALL, default=300): cv.positive_int,
-    }
-)
+CONF_WEBCONTROL_SERVER_ADDR = 'webcontrol_server_addr'
+CONF_UPDATE_INTERVAL = 'update_interval'
+
+PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
+    vol.Optional(CONF_WEBCONTROL_SERVER_ADDR, default='http://webcontrol.local'): cv.url,
+    vol.Optional(CONF_UPDATE_INTERVAL, default=600): cv.positive_int
+})
 
 async def async_setup_platform(hass, config, add_devices_callback, discovery_info=None):
     """Setup."""
-    url = config.get(webcontrol_server_addr)
-    interval = config.get(update_interval, 30)  # Default: 30 seconds
+    url = config[CONF_WEBCONTROL_SERVER_ADDR]
+    interval = config[CONF_WEBCONTROL_SERVER_ADDR]  # Default: 30 seconds
+
+    _LOGGER.debug(url)
+    _LOGGER.debug(interval)
 
     if not url:
         _LOGGER.error("URL is required to set up the Warema WMS WebControl cover platform.")
@@ -57,7 +61,6 @@ async def async_setup_platform(hass, config, add_devices_callback, discovery_inf
 
     _LOGGER.error(url)
     _LOGGER.error(interval)
-
 
     # async_create_clientsession(hass),
     client = WmsControllerAPI(async_create_clientsession(hass), url)
