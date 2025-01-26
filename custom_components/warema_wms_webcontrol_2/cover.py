@@ -45,10 +45,11 @@ async def async_setup_platform(hass, config, add_devices_callback, discovery_inf
     """Setup."""
     # url = config[CONF_WEBCONTROL_SERVER_ADDR]
     # interval = config[CONF_INTERVALL]  # Default: 30 seconds
-  
-    url = config_entry.data["webcontrol_server_addr"]
-    update_interval = config_entry.data["update_interval"]
+    # url = config_entry.data["webcontrol_server_addr"]
+    # update_interval = config_entry.data["update_interval"]
 
+    url = config.get(webcontrol_server_addr, 'http://webcontrol.local')
+    interval = config.get(update_interval, 30)   
 
     _LOGGER.debug(url)
     _LOGGER.debug(interval)
