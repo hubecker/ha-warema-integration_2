@@ -20,7 +20,9 @@ RX_SHADE_STATE = '0431'
 TX_MOVE_SHADE = '0821'
 SHADE_POSITION = '03{}ffffff'
 
-logger = logging.getLogger('warema_wms')
+# logger = logging.getLogger('warema_wms')
+_LOGGER = logging.getLogger(__name__)
+
 
 
 class WmsController:
@@ -73,8 +75,8 @@ class WmsController:
         cc, ts = self._increment()
         params = {GET_PARAM1: CMD_PREFIX + format(cc, '02x') + cmd + additional_str, GET_PARAM2: str(ts)}
         r = requests.get(urljoin(self.target, ENDPOINT), params=params, timeout=10)
-        logger.debug("Sending request: {}".format(r.request.path_url))
-        logger.debug("Recieved response: {}".format(r.text))
+        _LOGGER.debug("Sending request: {}".format(r.request.path_url))
+        _LOGGER.debug("Recieved response: {}".format(r.text))
         return ElemTree.fromstring(r.text)
 
     def send_rx_lang_command(self):
