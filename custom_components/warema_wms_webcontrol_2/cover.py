@@ -14,8 +14,8 @@ from homeassistant.core import HomeAssistant
 from homeassistant.const import Platform
 
 # from warema_wms import Shade, WmsController
-import wms_controller
-import shade
+from .wms_controller import WmsController
+from .shade import Shade
 
 from .const import webcontrol_server_addr, update_interval
 
