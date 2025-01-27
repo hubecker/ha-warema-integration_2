@@ -5,7 +5,7 @@ from datetime import datetime
 from warema_wms.wms_controller import WmsController
 
 # logger = logging.getLogger('warema_wms')
-_LOGGER = logging.getLogger(__name__)
+_LOGGER: logging.Logger = logging.getLogger(__package__)
 
 
 class Shade:
