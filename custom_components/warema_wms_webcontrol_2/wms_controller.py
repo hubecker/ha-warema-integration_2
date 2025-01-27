@@ -21,7 +21,7 @@ TX_MOVE_SHADE = '0821'
 SHADE_POSITION = '03{}ffffff'
 
 # logger = logging.getLogger('warema_wms')
-_LOGGER = logging.getLogger(__name__)
+_LOGGER: logging.Logger = logging.getLogger(__package__)
 
 
 
