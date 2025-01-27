@@ -33,23 +33,22 @@ PLATFORMS = [Platform.COVER]
 # _LOGGER = logging.getLogger(__name__)
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
-CONF_WEBCONTROL_SERVER_ADDR = 'webcontrol_server_addr'
-CONF_UPDATE_INTERVAL = 'update_interval'
+PLATFORMS = [Platform.COVER]
 
-PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
-    vol.Optional(CONF_WEBCONTROL_SERVER_ADDR, default='http://webcontrol.local'): cv.url,
-    vol.Optional(CONF_UPDATE_INTERVAL, default=600): cv.positive_int
-})
+CONF_URL = "webcontrol_server_addr"
+CONF_INTERVALL = "update_interval"
+
+PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
+    {
+        vol.Optional(CONF_URL, default="http://192.168.178.73"): cv.url,
+        vol.Optional(CONF_INTERVALL, default=300): cv.positive_int,
+    }
+)
 
 async def async_setup_platform(hass, config, add_devices_callback, discovery_info=None):
     """Setup."""
-    # url = config[CONF_WEBCONTROL_SERVER_ADDR]
-    # interval = config[CONF_INTERVALL]  # Default: 30 seconds
-    # url = config_entry.data["webcontrol_server_addr"]
-    # update_interval = config_entry.data["update_interval"]
-
-    url = config.get(webcontrol_server_addr, 'http://webcontrol.local')
-    interval = config.get(update_interval, 30)   
+    url = config.get(webcontrol_server_addr)
+    interval = config.get(update_interval, 30)  # Default: 30 seconds
 
     _LOGGER.debug(url)
     _LOGGER.debug(interval)
