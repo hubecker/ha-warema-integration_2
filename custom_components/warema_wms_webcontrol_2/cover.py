@@ -34,8 +34,8 @@ PLATFORMS = [Platform.COVER]
 # _LOGGER = logging.getLogger(__name__)
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
-CONF_URL = 'webcontrol_server_addr'
-CONF_SCAN_INTERVAL = 'update_interval'
+CONF_URL = 'url'
+CONF_SCAN_INTERVAL = 'scan_interval'
 
 PLATFORMS = [Platform.COVER]
 
