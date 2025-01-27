@@ -17,7 +17,7 @@ from homeassistant.const import Platform
 from .wms_controller import WmsController
 from .shade import Shade
 
-from .const import webcontrol_server_addr, update_interval
+from .const import CONF_URL, CONF_INTERVAL
 
 from homeassistant.components.cover import (
     ATTR_POSITION,
@@ -35,28 +35,22 @@ _LOGGER: logging.Logger = logging.getLogger(__package__)
 
 PLATFORMS = [Platform.COVER]
 
-CONF_URL = "webcontrol_server_addr"
-CONF_INTERVALL = "update_interval"
-
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
     {
-        vol.Optional(webcontrol_server_addr, default="http://192.168.178.73"): cv.url,
-        vol.Optional(update_interval, default=300): cv.positive_int,
+        vol.Optional(CONF_URL): cv.url,
+        vol.Optional(CONF_INTERVAL): cv.positive_int,
     }
 )
 
 async def async_setup_platform(hass, config, add_devices_callback, discovery_info=None):
     """Setup."""
-    url = config.get(webcontrol_server_addr)
-    interval = config.get(update_interval, 30)  # Default: 30 seconds
+    url = config.get(CONF_URL)
+    interval = config.get(CONF_INTERVAL) # Default: 30 seconds
 
-    url1 = "http://192.168.178.73"
-    interval1= 300
-    
     _LOGGER.debug(url)
     _LOGGER.debug(interval)
 
-    if not url1:
+    if not url:
         _LOGGER.error("URL is required to set up the Warema WMS WebControl cover platform.")
         return
 
