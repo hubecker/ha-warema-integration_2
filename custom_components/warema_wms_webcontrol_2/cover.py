@@ -46,8 +46,8 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
 
 async def async_setup_platform(hass, config, add_devices_callback, discovery_info=None):
     """Setup."""
-    url = config.get(CONF_URL)
-    interval = config.get(CONF_SCAN_INTERVAL) # Default: 30 seconds
+    url = config[CONF_URL]
+    interval = config[CONF_SCAN_INTERVAL] # Default: 30 seconds
 
     _LOGGER.debug(url)
     _LOGGER.debug(interval)
