@@ -29,8 +29,6 @@ from homeassistant.components.cover import (
     PLATFORM_SCHEMA
 )
 
-PLATFORMS = [Platform.COVER]
-
 # _LOGGER = logging.getLogger(__name__)
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
@@ -53,6 +51,11 @@ async def async_setup_platform(hass, config, add_devices_callback, discovery_inf
 
     _LOGGER.debug(url)
     _LOGGER.debug(interval)
+
+    if url:
+        _LOGGER.error(url)
+    return
+
 
     if not url:
         _LOGGER.error("URL is required to set up the Warema WMS WebControl cover platform.")
