@@ -40,8 +40,8 @@ CONF_INTERVALL = "update_interval"
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
     {
-        vol.Optional(CONF_URL, default="http://192.168.178.73"): cv.url,
-        vol.Optional(CONF_INTERVALL, default=300): cv.positive_int,
+        vol.Optional(webcontrol_server_addr, default="http://192.168.178.73"): cv.url,
+        vol.Optional(update_interval, default=300): cv.positive_int,
     }
 )
 
@@ -67,7 +67,7 @@ async def async_setup_platform(hass, config, add_devices_callback, discovery_inf
     _LOGGER.error(interval)
 
     # async_create_clientsession(hass),
-    client = WmsControllerAPI(async_create_clientsession(hass), url1)
+    client = WmsControllerAPI(async_create_clientsession(hass), url)
 
     _LOGGER.debug("CLIENT: {}".format(client))
     _LOGGER.debug(client)
@@ -82,7 +82,7 @@ async def async_setup_platform(hass, config, add_devices_callback, discovery_inf
 
     dev = []
     for s in shades:
-        dev.append(WaremaShade(s, interval1))
+        dev.append(WaremaShade(s, interval))
         
     add_devices_callback(dev, True)
     
