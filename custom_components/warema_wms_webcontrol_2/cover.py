@@ -12,6 +12,7 @@ from homeassistant.helpers.entity import Entity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.const import Platform
+from homeassistant.const import CONF_URL, CONF_SCAN_INTERVAL
 
 # from warema_wms import Shade, WmsController
 from .wms_controller import WmsController
@@ -34,21 +35,21 @@ PLATFORMS = [Platform.COVER]
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
 CONF_URL = 'webcontrol_server_addr'
-CONF_INTERVAL = 'update_interval'
+CONF_SCAN_INTERVAL = 'update_interval'
 
 PLATFORMS = [Platform.COVER]
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
     {
         vol.Optional(CONF_URL): cv.url,
-        vol.Optional(CONF_INTERVAL): cv.positive_int,
+        vol.Optional(CONF_SCAN_INTERVAL): cv.positive_int,
     }
 )
 
 async def async_setup_platform(hass, config, add_devices_callback, discovery_info=None):
     """Setup."""
     url = config.get(CONF_URL)
-    interval = config.get(CONF_INTERVAL) # Default: 30 seconds
+    interval = config.get(CONF_SCAN_INTERVAL) # Default: 30 seconds
 
     _LOGGER.debug(url)
     _LOGGER.debug(interval)
