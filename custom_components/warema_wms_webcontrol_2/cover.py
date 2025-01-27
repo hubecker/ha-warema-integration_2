@@ -41,8 +41,8 @@ PLATFORMS = [Platform.COVER]
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
     {
-        vol.Optional(CONF_URL): cv.url,
-        vol.Optional(CONF_SCAN_INTERVAL): cv.positive_int,
+        vol.Optional(CONF_URL, default='http://webcontrol.local'): cv.url,
+        vol.Optional(CONF_SCAN_INTERVAL, default=600): cv.positive_int,
     }
 )
 
