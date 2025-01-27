@@ -47,16 +47,16 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
 
 async def async_setup_platform(hass, config, add_devices_callback, discovery_info=None):
     """Setup."""
-    # url = config.get(webcontrol_server_addr)
-    # interval = config.get(update_interval, 30)  # Default: 30 seconds
+    url = config.get(webcontrol_server_addr)
+    interval = config.get(update_interval, 30)  # Default: 30 seconds
 
-    url = "http://192.168.178.73"
-    interval = 300
+    url1 = "http://192.168.178.73"
+    interval1= 300
     
     _LOGGER.debug(url)
     _LOGGER.debug(interval)
 
-    if not url:
+    if not url1:
         _LOGGER.error("URL is required to set up the Warema WMS WebControl cover platform.")
         return
 
@@ -67,7 +67,7 @@ async def async_setup_platform(hass, config, add_devices_callback, discovery_inf
     _LOGGER.error(interval)
 
     # async_create_clientsession(hass),
-    client = WmsControllerAPI(async_create_clientsession(hass), url)
+    client = WmsControllerAPI(async_create_clientsession(hass), url1)
 
     _LOGGER.debug("CLIENT: {}".format(client))
     _LOGGER.debug(client)
@@ -82,7 +82,7 @@ async def async_setup_platform(hass, config, add_devices_callback, discovery_inf
 
     dev = []
     for s in shades:
-        dev.append(WaremaShade(s, interval))
+        dev.append(WaremaShade(s, interval1))
         
     add_devices_callback(dev, True)
     
