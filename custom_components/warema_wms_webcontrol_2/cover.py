@@ -47,9 +47,12 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
 
 async def async_setup_platform(hass, config, add_devices_callback, discovery_info=None):
     """Setup."""
-    url = config.get(webcontrol_server_addr)
-    interval = config.get(update_interval, 30)  # Default: 30 seconds
+    # url = config.get(webcontrol_server_addr)
+    # interval = config.get(update_interval, 30)  # Default: 30 seconds
 
+    url = "http://192.168.178.73"
+    interval = 300
+    
     _LOGGER.debug(url)
     _LOGGER.debug(interval)
 
