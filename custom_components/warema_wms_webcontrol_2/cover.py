@@ -18,7 +18,7 @@ from homeassistant.const import CONF_URL, CONF_SCAN_INTERVAL
 from .wms_controller import WmsController
 from .shade import Shade
 
-from .const import webcontrol_server_addr, update_interval
+# from .const import webcontrol_server_addr, update_interval
 
 from homeassistant.components.cover import (
     ATTR_POSITION,
