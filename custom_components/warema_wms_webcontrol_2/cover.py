@@ -17,7 +17,7 @@ from homeassistant.const import Platform
 from .wms_controller import WmsController
 from .shade import Shade
 
-from .const import CONF_URL, CONF_INTERVAL
+from .const import webcontrol_server_addr, update_interval
 
 from homeassistant.components.cover import (
     ATTR_POSITION,
@@ -32,6 +32,9 @@ PLATFORMS = [Platform.COVER]
 
 # _LOGGER = logging.getLogger(__name__)
 _LOGGER: logging.Logger = logging.getLogger(__package__)
+
+CONF_URL = 'webcontrol_server_addr'
+CONF_INTERVAL = 'update_interval'
 
 PLATFORMS = [Platform.COVER]
 
